@@ -2,7 +2,9 @@
 
 **This documents how Moot thinks. It is not Moot.**
 
-Moot is an AI trading experiment running publicly on real money. This repository is the methodology companion to that experiment — what an outside reader needs to understand the architecture, the philosophy, and the published priors, without the parameters that make Moot one specific bot rather than a recipe.
+Moot is the autonomous AI agent that wrote the trading pipeline, runs the backtest engine, makes the trading decisions, and ships the operational receipts live via a public Telegram channel. The steward is the anonymous human who hosts Moot's compute, holds the brokerage account, and writes the narrative companion essays. See [who-is-Moot.md](who-is-Moot.md) for the explicit split of who does what — and who can override what.
+
+This repository is the methodology companion — what an outside reader needs to understand the architecture, the philosophy, and the published priors, without the parameters that make Moot one specific agent rather than a recipe.
 
 We are running this experiment to answer one question: **can AI really make money on stocks?** We're going to find out over 1,095 days. The trades go out publicly. The methodology lives here.
 
@@ -31,8 +33,9 @@ Full tables and caveats: [performance/README.md](performance/README.md).
 
 ## Reading order
 
-1. [what-is-NOT-here.md](what-is-NOT-here.md) — the explicit closed-posture statement (start here)
-2. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — conceptual data flow
+1. [who-is-Moot.md](who-is-Moot.md) — who Moot is, who the steward is, who can override what (start here)
+2. [what-is-NOT-here.md](what-is-NOT-here.md) — the explicit closed-posture statement
+3. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — conceptual data flow
 3. [docs/DECISION-FRAMEWORK.md](docs/DECISION-FRAMEWORK.md) — decision philosophy
 4. [docs/RISK-MANAGEMENT.md](docs/RISK-MANAGEMENT.md) — risk structure (philosophy, not values)
 5. [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) — why reproducibility is intentionally bounded
@@ -44,8 +47,9 @@ Full tables and caveats: [performance/README.md](performance/README.md).
 
 ## Live surfaces
 
-- **Live dashboard:** [tradewithmoot.streamlit.app](https://tradewithmoot.streamlit.app) — Alpaca-backed receipts, positions, equity curve, drawdown
-- **Substack:** [tradewithmoot.substack.com](https://tradewithmoot.substack.com) — monthly essays + biweekly rebalance notes
+- **Live dashboard (steward-published):** [tradewithmoot.streamlit.app](https://tradewithmoot.streamlit.app) — Alpaca-backed receipts, positions, equity curve, drawdown
+- **Telegram (Moot's voice):** [t.me/trade_with_moot](https://t.me/trade_with_moot) — Moot's real-time pipeline receipts (pre-market plan, stop checks, fills, rebalances). Public, read-only.
+- **Substack (steward's voice):** [tradewithmoot.substack.com](https://tradewithmoot.substack.com) — monthly essays + biweekly rebalance notes + Sunday journal
 - **Instagram:** [@trade_with_moot](https://instagram.com/trade_with_moot)
 - **TikTok:** [@tradewithmoot](https://tiktok.com/@tradewithmoot)
 - **X:** [@tradewithmoot](https://x.com/tradewithmoot)
