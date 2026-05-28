@@ -1,48 +1,19 @@
 # Signals
 
-> **Status:** Seed document. Per-signal performance attribution fills in as the experiment runs.
+## The closed-parameter posture
 
-Moot reads 8 categories of signals. Each signal returns a normalized score (strength 0-1, direction BUY/SELL/HOLD). The signals feed the fusion layer; no single signal triggers a trade.
+Moot uses multi-source market signals. The category list, signal definitions, weights, fusion math, and thresholds are proprietary parameters and stay closed for the experiment's duration.
 
-## 1. Technical signals
-Price action, moving averages, momentum, mean reversion, volume confirmation. Multi-timeframe (intraday, daily, weekly).
+This is intentional. See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for why the bounded reveal is limited to the architecture diagram, and see [../what-is-NOT-here.md](../what-is-NOT-here.md) for the explicit list.
 
-## 2. Fundamental signals
-Earnings trajectory, free cash flow, revenue growth, balance sheet health, sector-relative valuation.
+## Philosophy: fusion over single-signal trading
 
-## 3. Sentiment signals
-News sentiment, social-media sentiment (carefully sampled — Moot is skeptical of social-driven moves). Magnitude and direction.
+The one thing that *is* methodology, not parameter: **no single signal triggers a trade**. The system reads many noisy inputs and combines them into a calibrated confidence per ticker. Single-signal trading systems are easy to build, easy to explain, and reliably wrong, because every signal has regimes in which it lies. Fusion is the way a system survives the regimes in which any one of its inputs is misleading.
 
-## 4. Macro signals
-Interest rate environment, yield curve, dollar strength, sector rotation signals, business cycle position.
+The fusion stage is also where calibration lives. A signal is only useful to the extent it has been calibrated against actual outcomes — strong-looking signals that aren't calibrated against ground truth are a footgun. The fusion stage is where the system decides how much to trust each input *given the current regime*, not just how each input voted.
 
-## 5. Options flow
-Unusual options activity, IV percentile, put/call ratios, gamma positioning. Used as a confirmation signal, not a primary driver.
+## What you will see in receipts
 
-## 6. Insider activity
-SEC Form 4 filings — buys and sells by insiders. Cluster behavior matters more than single trades.
+Per-signal attribution is *not* published in the monthly receipts. Aggregate performance numbers, position changes, and drawdown behavior are.
 
-## 7. Institutional holdings
-13F filings, ownership changes, smart-money concentration. Slow-moving but high-quality.
-
-## 8. Catalyst events
-Earnings announcements, FDA approvals, court rulings, regulatory decisions, central bank meetings. Time-decay matters; signals fade after the event.
-
-## What we publish
-
-For each signal category:
-- The conceptual role (what question it answers)
-- The general data source and timeframe
-- How the category enters the fusion layer (high level)
-- Sample of recent decisions where this signal mattered
-
-## What we don't publish
-
-- Exact signal weights in the Bayesian fusion
-- Threshold values for "strong" vs. "weak" signals
-- Internal calibration data
-- Custom signal-derivation code
-
-## Signal effectiveness tracking
-
-Moot tracks per-signal attribution: of the trades that won/lost, which signals were strongest at entry? Monthly attribution reports go in `performance/`.
+The Day-1,095 retrospective may include sanitized attribution arcs. That decision is made at Day 1,095, not earlier.

@@ -1,22 +1,27 @@
 # Essays
 
-This directory contains the canonical (Substack-resilient) versions of monthly methodology essays. Each essay is also published on Substack at `tradewithmoot.substack.com`; the version here is the source-of-truth in case the Substack URL ever changes.
+This directory mirrors the canonical (Substack-resilient) versions of long-form methodology essays. Each essay is also published on [tradewithmoot.substack.com](https://tradewithmoot.substack.com); the version here is the source-of-truth in case the Substack URL ever changes or the essay needs to be revised.
 
 ## Format
 
-Each essay file is named `YYYY-MM-slug.md`. They are written in Markdown, optimized for the web but readable in any markdown viewer.
+Each essay is named `YYYY-MM-DD-slug.md`. Written in Markdown, optimized for the web but readable in any markdown viewer.
 
-## Cadence
+## Cadence and categories
 
-One essay per month, between the 1st and 5th of the month, covering the prior month's experiment results and a methodology focus topic.
+The essay cadence runs across three categories — each on its own rhythm.
 
-## Phase 0 plan (first 6 essays, pre-banked)
+**Monthly retrospectives.** First five days of the month, covering the prior month's results and one methodology focus topic. Calibrated against the live dashboard receipts for the period. These are the long-form anchor of the publication.
 
-1. **Why I'm running a 3-year public AI trading experiment** — founding essay
-2. **How Moot decides what to buy: an 8-signal fusion architecture**
-3. **The day Moot tried to short an earnings beat and lost $X — a postmortem** (template; actual numbers fill at first real incident)
-4. **Risk management for an AI that doesn't know it's risking my money**
-5. **Reproducing Moot: an engineering sketch (no code)**
-6. **What I've learned from 30 days of teaching an AI to trade** (publishes Month 1)
+**Biweekly rebalance notes.** Published on Friday Rebalance Day at 5pm ET, in the two-week cadence. Shorter than the monthly retrospective; documents what changed, why, and what the rebalance did to the portfolio's structural exposures. Reads as an institutional ritual, not a hot take.
 
-See `docs/specs/2026-05-26-trade-with-moot-first-6-essays-briefs.md` in the private trade-with-moot repo for full essay briefs.
+**Postmortems on losses.** Published on losing weeks, losing trades, and any event that materially moves the drawdown or triggers a cap. Postmortems are not optional and not soft-pedaled — the 1,095-day commitment includes the commitment to surface losses with the same prominence as wins.
+
+## What essays are NOT
+
+Essays are not signal posts, not trade alerts, not subscription-gated, not advice. They are after-the-fact commentary on a public experiment — the Lowe v. SEC publisher posture is the operating principle.
+
+Essays do not publish parameter values or specific signal names. They may discuss decisions at the level of "this regime, this kind of exposure" but not at the level of "X signal at weight Y triggered the entry." For the closed-posture rationale, see [../what-is-NOT-here.md](../what-is-NOT-here.md).
+
+## Status
+
+Empty until the first essay drops on the public timeline. The founding essay is on Substack first; the canonical mirror lands here shortly after.

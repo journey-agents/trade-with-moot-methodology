@@ -1,56 +1,38 @@
 # Risk Management
 
-> **Status:** Seed document. Specific incident postmortems fill in as the experiment runs.
-
 ## Philosophy
 
 Risk management is the boring part. Done right, you don't notice it. Done wrong, the whole experiment dies in one bad week.
 
-Moot's risk discipline is rule-based, not discretionary. The rules below are constants; they don't get bent because "this trade is special."
+Moot's risk discipline is rule-based, not discretionary. The structural categories below are constants; they don't get bent because a trade is special.
 
-## Hard limits (non-negotiable)
+The threshold *values* are not published. The *structure* is. The values are part of the closed parameter set — see [../what-is-NOT-here.md](../what-is-NOT-here.md). The current cap states, as enforced live, are visible on the dashboard at [tradewithmoot.streamlit.app](https://tradewithmoot.streamlit.app).
 
-| Limit | Threshold | What happens if exceeded |
-|---|---|---|
-| Single position size (% of portfolio) | Capped | Cannot add to position |
-| Sector exposure (% of portfolio) | Capped | New sector positions rejected |
-| Daily portfolio loss | Capped | Trading halted until next open |
-| Max drawdown from peak | Capped | Increasingly conservative sizing |
-| Open positions (count) | Capped | New entries blocked |
-| Correlation (avg pairwise) | Capped | New correlated entries blocked |
+## Structural caps (the categories, not the values)
 
-Specific threshold values are not published (they're part of the proprietary parameter set). The structure of the limits is what matters for understanding the methodology.
+- **Single-position cap** — no one position dominates the portfolio. Concentration is the #1 way amateur accounts blow up.
+- **Sector exposure cap** — no one sector dominates the portfolio. Correlated sector bets disguised as diversification are the #2 way they blow up.
+- **Daily portfolio loss limit** — a one-day loss past the limit halts trading until the next session, mechanically.
+- **Drawdown protocol** — sizing gets progressively more conservative as the drawdown from peak deepens. The protocol is symmetric — restrictions do not lift on a single good day.
+- **Open-position cap** — finite attention. The framework rejects new entries past a count limit, so existing positions don't get under-managed.
+- **Correlation guard** — average pairwise correlation across the book has a cap. Highly-correlated positions count against each other.
+- **Liquidity cap** — position size cannot exceed a fraction of average daily volume; orders that would move the market do not get placed.
 
-## Position sizing
+## Exit-rule taxonomy (the categories, not the values)
 
-- **Equal-weight default** on the Sharpe-optimal sleeve. Concentration is the #1 way amateurs blow up; equal-weight forces discipline.
-- **Volatility-scaled** within positions: more volatile names get smaller dollar size to equalize risk contribution.
-- **Liquidity-constrained**: position size can never exceed N% of average daily volume.
+- **Hard stop-loss** at a fixed percentage below entry — a deterministic floor.
+- **Trailing stop** that activates once a position has crossed a threshold gain — preserves upside while locking in.
+- **Time-stop** on positions that don't move within the thesis window — reallocates capital to opportunities with current signal strength rather than stale ones.
+- **Scaled exits** at progressive targets — partial profit-taking on winners without giving up the upside.
 
-## Exit rules
+The taxonomy is the methodology. The threshold values are the parameters.
 
-- **Hard stop-loss** at a fixed percentage below entry.
-- **Trailing stops** activate after a position is up by some threshold.
-- **Time-stop** on positions that don't move within their thesis window — capital reallocated to opportunities with current signal strength.
-- **Scaled exits** on winners — sell partial positions at progressive targets to lock in gains while preserving upside.
+## What "blow up" means and how the framework prevents it
 
-## Drawdown protocol
+A blow-up is a single-day or single-week loss the portfolio can't recover from in a reasonable time. Most retail blow-ups have one of three causes — concentration, correlated bets disguised as diversification, or leverage without limits. The framework addresses each — single-position cap, correlation guard, leverage cap.
 
-When the portfolio is in drawdown:
-1. **-5% from peak**: Normal trading, observation logged
-2. **-10% from peak**: Position sizing reduced
-3. **-15% from peak**: New entries paused; only manage existing positions
-4. **-20% from peak**: Trading halted for at least one full session; methodology review triggered
+The experiment may still produce a losing month, or a losing quarter, or a losing year. It should not produce a blow-up. If it does, the postmortem goes in [../meta/](../meta/) and the prior cap structure gets revised in the next revisions-log entry.
 
-Each threshold has an exit (return to upper threshold's regime). The drawdown protocol is symmetric — Moot doesn't lift restrictions just because of one good day.
+## Where to see the caps live
 
-## What "blow up" means and how we prevent it
-
-A blow-up is a single-day or single-week loss that the portfolio can't recover from in a reasonable time. Most retail blow-ups have one of three causes:
-1. Position concentration (one trade is too big)
-2. Correlated bets (multiple positions are the same trade in disguise)
-3. Leverage without limits
-
-Moot's framework addresses each: equal-weight prevents #1, correlation guard prevents #2, leverage cap prevents #3.
-
-The experiment may still produce a losing month or losing quarter. It should not produce a blow-up. If it does, the postmortem goes in this document.
+Cap states (current exposure vs. limit) are surfaced on the live dashboard at [tradewithmoot.streamlit.app](https://tradewithmoot.streamlit.app). Readers can verify, in real time, that the structural caps described above are being enforced — without seeing the numeric values that make them one specific bot rather than a recipe.

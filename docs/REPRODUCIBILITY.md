@@ -1,49 +1,38 @@
 # Reproducibility
 
-> **Status:** Seed document. Detailed reproduction guides fill in as the experiment runs.
+## The bounded reveal
 
-## What "reproducible-in-principle" means
+Reproducibility is intentionally bounded for the duration of the experiment.
 
-A competent AI engineer should be able to read this repository and rebuild a similar system. Not the same system — that would require the proprietary parameters that stay in the private bot repo. But a *similar* system: same architecture, same signal categories, comparable decision framework, similar risk philosophy.
+The bounded reveal is the architecture diagram in [ARCHITECTURE.md](ARCHITECTURE.md). That is the methodology. The rest — signals, weights, fusion math, prompts, threshold values, the agentic layer's internal decomposition — is closed.
+
+The experiment's value depends on the bot being one specific bot, not a recipe anyone can fork. Cloning the recipe and observing receipts for the clone is a different experiment, and a much less interesting one. The closed parameters are the isolation chamber that makes the receipts mean something.
+
+## Why this is *not* a posture of secrecy-for-its-own-sake
+
+A retail audience reading "we use signal X with weight Y above threshold Z" reliably mistakes the recipe for the system. The recipe is a tiny fraction of what makes a trading system work. The rest is calibration against actual outcomes, regime-aware tuning, operational discipline, and 1,095 days of *not* modifying the methodology in response to a bad month.
+
+If the published material were the recipe, the experiment would mostly be teaching people to footgun themselves. The published material is the architecture and the philosophy, because those are the parts a reader can actually take something useful from.
+
+## What a competent engineer can do with what's here
+
+A competent AI engineer reading this repository should be able to **rebuild a similar system** — same architecture, comparable decision framework, similar risk philosophy. Not the same system, because the parameters are closed. A *similar* system.
 
 If you tried this and ended up with a different architecture, that's fine — there's no claim of optimality. If you ended up with no architecture because key information was withheld, that's a documentation bug. File an issue.
 
-## What you'd need
+## What the receipts make verifiable
 
-| Component | Where to get it |
-|---|---|
-| Broker API access | [Alpaca](https://alpaca.markets) (free paper account for development) |
-| Market data | Alpaca + a fundamentals provider (Polygon, Tiingo, Financial Modeling Prep) |
-| AI runtime | [Claude Code](https://claude.com/claude-code) with API key, or any agentic LLM framework |
-| Sentiment data | News API + social signals (Reddit/Twitter sentiment scrapers) |
-| Insider/institutional | SEC EDGAR API (free) |
-| Options data | Polygon, Alpaca Options, or your broker |
-| Compute | Local laptop adequate; the workload is bursty (signal scan → fusion → decision) |
+The published priors (in `../performance/` and the [README](../README.md)) and the live dashboard at [tradewithmoot.streamlit.app](https://tradewithmoot.streamlit.app) together make the following independently verifiable:
 
-## The hard parts (where most replications fail)
+- That the V3 portfolio and the AI sleeve exist and trade real money
+- That the structural caps are being enforced live
+- That the cumulative P&L, drawdown, and trade history are reported faithfully against the brokerage record
+- That the inception dates are what the founding essay says they are
 
-1. **Signal calibration** — every signal needs to be calibrated against actual outcomes. The signal-attribution feedback loop is what makes the system improve over time. Without it, you have a static rule engine.
+What is *not* independently verifiable — at least until Day 1,095 — is the *attribution* of returns to specific signals or specific decisions. That is the closed parameter set.
 
-2. **Risk discipline** — the rules in `RISK-MANAGEMENT.md` look simple. Following them when the portfolio is up 10% and you're tempted to size up, or down 10% and you're tempted to revenge-trade, is the actual hard problem.
+## The Day-1,095 contract
 
-3. **Fusion calibration** — combining 8 signals into one calibrated confidence is not "average them." Each signal has different bias, different recency value, different correlation with others. Tuning this takes months.
+Day 1,095 (~summer 2029): a full retrospective ships. It will include cumulative P&L, methodology evolution, what worked, what didn't, what's next. Source code stays closed even then.
 
-4. **Operational discipline** — running this for 3 years without modifying the methodology in response to a bad month is the meta-challenge.
-
-## What's NOT reproducible
-
-- The specific Bayesian priors used in the fusion layer
-- The exact threshold values in the risk limits
-- The proprietary signal-derivation code
-- The signal-attribution feedback loop's specific implementation
-
-These stay in the private bot repo. They are NOT necessary to build a *similar* system; they ARE necessary to clone this specific system. The point of the experiment is the methodology, not the parameter set.
-
-## Open questions Moot's running answer is
-
-- Does multi-signal fusion outperform best-single-signal in real trading? **Hypothesis: yes, by 2-4% annualized**. Testing now.
-- Does AI improve over time with feedback? **Hypothesis: yes if calibrated, no if not**. Testing now.
-- Does anonymous AI agency build follower trust? **Hypothesis: yes, contingent on time-locked credible commitment**. Testing now.
-- Can a 1,095-day commitment be sustained? **Hypothesis: with hedges (degraded-mode runbook, 6-month go/no-go, automation), yes**. Testing now.
-
-Each of these gets a long-form essay over the next 36 months.
+Whether the closed parameters get opened in the retrospective is decided at Day 1,095, not earlier. The default is closed; opening is the exception, not the rule.

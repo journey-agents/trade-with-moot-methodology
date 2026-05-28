@@ -2,45 +2,96 @@
 
 **This documents how Moot thinks. It is not Moot.**
 
-Moot is an AI trading experiment running publicly on Alpaca. This repository documents the architecture, signals, decision framework, risk management, and reproducibility material behind that experiment — what an outside engineer or researcher needs to understand how the system makes decisions, without exposing the live trading code itself.
+Moot is an AI trading experiment running publicly on real money. This repository is the methodology companion to that experiment — what an outside reader needs to understand the architecture, the philosophy, and the published priors, without the parameters that make Moot one specific bot rather than a recipe.
 
-We are running this experiment to answer one question: **Can AI really make money on stocks?** We'll find out over 1,095 days. The trades go out publicly to Alpaca. The methodology goes here.
+We are running this experiment to answer one question: **can AI really make money on stocks?** We're going to find out over 1,095 days. The trades go out publicly. The methodology lives here.
 
-## What this repo is
+## Posture: open architecture, closed parameters
 
-- A reproducible-in-principle account of the experiment's architecture
-- Monthly long-form essays (companion to Substack publication)
-- Performance reports tied to verifiable Alpaca portfolio share links
-- The contractual artifact of the 3-year experiment
+The bot is closed-source by design. So are the signals, the weights, the decision-tree structure, the prompts, the thresholds, and the parameter set. What's published is the conceptual architecture, the philosophy, the risk structure (without values), and the receipts.
 
-## What this repo is NOT
+See [what-is-NOT-here.md](what-is-NOT-here.md) for the explicit list of what's intentionally absent — and why.
 
-- The trading bot's source code (closed-source by design)
-- Real-time signal alerts (none exist — there is no paid product)
-- Investment advice (it isn't, ever)
+## Phased rollout
+
+| Phase | What | Status |
+|---|---|---|
+| 1 | V3 portfolio — diversified Sharpe-optimal core | **live 2026-05-22** |
+| 1.5 | AI-infrastructure sleeve — 20-name conviction book | **live 2026-05-27** |
+| 2 | Day-trade pipeline (intraday) | designed; ships Q3 2026 (date TBD) |
+| 3 | Options sleeve | designed; ships Q4 2026 (date TBD) |
+
+Phases 2 and 3 are not live and will not be quietly grafted onto the experiment when they ship — each will have its own founding statement and its own inception clock.
+
+## Backtest priors (published)
+
+These are the validation results we want on the table *before* the public run starts, so Day 365 and Day 1,095 readers can compare what the system promised in historical regimes to what it actually delivered with real money.
+
+**V3 strategy — out-of-sample Sharpe by historical regime:**
+
+| Regime | OOS Sharpe |
+|---|---|
+| 2018 Q4 selloff | 1.78 |
+| 2020 COVID + recovery | 4.68 (full window: 6.95) |
+| 2022 bear | ~0 |
+| 2026 YTD validation | 1.44 |
+
+**AI sleeve — total return vs SPY across 5 regimes:**
+
+| Regime | AI sleeve | SPY | Δ |
+|---|---|---|---|
+| 2008 GFC | −32.5% | −38.5% | +6.0% |
+| 2018 Q4 | −19.4% | −18.6% | −0.8% |
+| 2020 COVID | +12.7% | −3.6% | +16.3% |
+| 2022 bear | −34.9% | −18.7% | −16.2% |
+| 2025-26 rally | +113.0% | +20.1% | +92.9% |
+
+Honest reading: **high-beta in growth, brittle in bear.** The forward test will surface which side of that pattern matters more over 1,095 days.
+
+Standard caveat: all backtests carry survivorship bias, small-sample limits, and the meta-objection that anything that worked in the past has a worse base rate of working in the future the moment someone notices it worked. Backtest Sharpes do not transfer to live trading at face value. They are a sanity check against "is this random," not a prediction of "this will work."
 
 ## Reading order
 
-1. `docs/ARCHITECTURE.md` — high-level system architecture
-2. `docs/DECISION-FRAMEWORK.md` — how Moot weighs signals into actions
-3. `docs/SIGNALS.md` — what signals Moot reads (8 categories)
-4. `docs/RISK-MANAGEMENT.md` — position sizing, max drawdown, daily-loss limits
-5. `docs/PROMPTS.md` — sanitized prompts (architecture without parameters)
-6. `docs/REPRODUCIBILITY.md` — what you'd need to rebuild a similar system
-7. `essays/` — monthly long-form essays
-8. `performance/` — month-end P&L summaries
+1. [what-is-NOT-here.md](what-is-NOT-here.md) — the explicit closed-posture statement (start here)
+2. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — conceptual data flow
+3. [docs/DECISION-FRAMEWORK.md](docs/DECISION-FRAMEWORK.md) — decision philosophy
+4. [docs/RISK-MANAGEMENT.md](docs/RISK-MANAGEMENT.md) — risk structure (philosophy, not values)
+5. [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) — why reproducibility is intentionally bounded
+6. [docs/SIGNALS.md](docs/SIGNALS.md) — the closed-parameter posture on signals
+7. [docs/PROMPTS.md](docs/PROMPTS.md) — the closed-parameter posture on prompts
+8. [essays/](essays/) — long-form methodology essays (source-of-truth mirror of Substack)
+9. [performance/](performance/) — published backtest priors + monthly receipts (once they exist)
+10. [meta/](meta/) — operational meta-records and the 1,095-day commitment
 
-## Status
+## Live surfaces
 
-Repository seeded 2026-05-27. Content evolves as the experiment runs. See [trade-with-moot Substack](https://tradewithmoot.substack.com) (coming) for parallel publication.
+- **Live dashboard:** [tradewithmoot.streamlit.app](https://tradewithmoot.streamlit.app) — Alpaca-backed receipts, positions, equity curve, drawdown
+- **Substack:** [tradewithmoot.substack.com](https://tradewithmoot.substack.com) — monthly essays + biweekly rebalance notes
+- **Instagram:** [@trade_with_moot](https://instagram.com/trade_with_moot)
+- **TikTok:** [@tradewithmoot](https://tiktok.com/@tradewithmoot)
+- **X:** [@tradewithmoot](https://x.com/tradewithmoot)
+- **YouTube:** [@trade-with-moot](https://youtube.com/@trade-with-moot)
+- **BMAC (cost-recovery donations only):** [buymeacoffee.com/tradewithmoot](https://buymeacoffee.com/tradewithmoot)
+
+## Cadence
+
+- **Daily close:** 4pm ET Mon–Fri (closing bell, not 5pm)
+- **Friday Rebalance Day:** biweekly Fridays at 5pm ET — public rebalance ritual
+- **Sunday Journal:** weekly long-form retrospective
+- **Monthly P&L:** within the first 5 days of the following month
+- **Day 1,095** (~summer 2029): full retrospective — P&L, methodology evolution, architecture postmortem, whatever the outcome
+
+## Day-1,095 commitment
+
+Whatever the outcome — good, bad, or neutral — the experiment ships a full public retrospective at Day 1,095. A bad outcome is not a reason to bury the experiment; that would defeat its purpose. The retrospective is the contract.
 
 ## License
 
-Documentation is CC-BY-SA-4.0. Code samples (if any) are MIT. See [LICENSE](LICENSE).
+Documentation is CC-BY-SA-4.0. See [LICENSE](LICENSE). The trading bot's source code is NOT in this repository.
 
 ## Contribution
 
-Issues open for questions, corrections, methodology challenges. Pull requests closed (single-author project). See [CONTRIBUTING.md](CONTRIBUTING.md).
+Issues open for questions, corrections, and methodology challenges. Pull requests closed — single-author project. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Not advice
 
