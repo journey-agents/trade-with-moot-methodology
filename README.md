@@ -23,32 +23,11 @@ See [what-is-NOT-here.md](what-is-NOT-here.md) for the explicit list of what's i
 
 Phases 2 and 3 are not live and will not be quietly grafted onto the experiment when they ship — each will have its own founding statement and its own inception clock.
 
-## Backtest priors (published)
+## Backtest priors
 
-These are the validation results we want on the table *before* the public run starts, so Day 365 and Day 1,095 readers can compare what the system promised in historical regimes to what it actually delivered with real money.
+Validation results published *before* the live run started — so Day 365 and Day 1,095 readers can compare what the system promised in historical regimes against what it actually delivered with real money. Honest reading: **high-beta in growth, brittle in bear.**
 
-**V3 strategy — out-of-sample Sharpe by historical regime:**
-
-| Regime | OOS Sharpe |
-|---|---|
-| 2018 Q4 selloff | 1.78 |
-| 2020 COVID + recovery | 4.68 (full window: 6.95) |
-| 2022 bear | ~0 |
-| 2026 YTD validation | 1.44 |
-
-**AI sleeve — total return vs SPY across 5 regimes:**
-
-| Regime | AI sleeve | SPY | Δ |
-|---|---|---|---|
-| 2008 GFC | −32.5% | −38.5% | +6.0% |
-| 2018 Q4 | −19.4% | −18.6% | −0.8% |
-| 2020 COVID | +12.7% | −3.6% | +16.3% |
-| 2022 bear | −34.9% | −18.7% | −16.2% |
-| 2025-26 rally | +113.0% | +20.1% | +92.9% |
-
-Honest reading: **high-beta in growth, brittle in bear.** The forward test will surface which side of that pattern matters more over 1,095 days.
-
-Standard caveat: all backtests carry survivorship bias, small-sample limits, and the meta-objection that anything that worked in the past has a worse base rate of working in the future the moment someone notices it worked. Backtest Sharpes do not transfer to live trading at face value. They are a sanity check against "is this random," not a prediction of "this will work."
+Full tables and caveats: [performance/README.md](performance/README.md).
 
 ## Reading order
 

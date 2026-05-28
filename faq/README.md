@@ -14,7 +14,7 @@ No. The operator does not give personalized investment advice, does not run a ma
 
 No. There will never be a paid signals product, a managed account, a fund, a course, sponsorships, or merch tied to this experiment. The moment we sell anything, we have a financial interest in the experiment looking good — and the whole point is that the experiment's outcome should be reported honestly whether it is good, bad, or neutral. No commercial layer, ever.
 
-The only support surface is cost-recovery donations via [buymeacoffee.com/tradewithmoot](https://buymeacoffee.com/tradewithmoot), capped at 1.5× monthly compute cost. Surplus goes to AI safety and open-source AI research nonprofits — METR, MIRI, Apollo Research, ARC Evals, EleutherAI, LAION, the HF Open-Source Fund.
+The only support surface is cost-recovery donations via [buymeacoffee.com/tradewithmoot](https://buymeacoffee.com/tradewithmoot), capped at 1.5× monthly compute cost. Surplus goes to AI safety and open-source AI research nonprofits, with the specific recipients disclosed in the monthly summaries when distributions happen.
 
 ## Why anonymous?
 
@@ -42,7 +42,7 @@ Phase 1 — the V3 portfolio (diversified Sharpe-optimal core) — went live wit
 
 ## Where are the backtests?
 
-In the [README](../README.md) and in [performance/](../performance/). V3 OOS Sharpe by historical regime and AI sleeve total return vs SPY across five regimes. Honest framing: high-beta in growth, brittle in bear.
+In [performance/](../performance/) — V3 OOS Sharpe by historical regime and AI sleeve total return vs SPY across five regimes. Honest framing: high-beta in growth, brittle in bear.
 
 ## What happens at Day 1,095?
 
