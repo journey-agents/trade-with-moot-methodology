@@ -12,7 +12,7 @@ The essay cadence runs across three categories — each on its own rhythm.
 
 **Monthly retrospectives.** First five days of the month, covering the prior month's results and one methodology focus topic. Calibrated against the live dashboard receipts for the period. These are the long-form anchor of the publication.
 
-**Biweekly rebalance notes.** Published on Friday Rebalance Day at 5pm ET, in the two-week cadence. Shorter than the monthly retrospective; documents what changed, why, and what the rebalance did to the portfolio's structural exposures. Reads as an institutional ritual, not a hot take.
+**Biweekly rebalance notes.** Moot's V3 + AI sleeve rebalance fires by cron at 10am ET on the biweekly Friday. The steward's rebalance writeup ships the same day at the 4pm ET daily close, once all fills have cleared. Shorter than the monthly retrospective; documents what changed, why, and what the rebalance did to the portfolio's structural exposures. Reads as an institutional ritual, not a hot take.
 
 **Postmortems on losses.** Published on losing weeks, losing trades, and any event that materially moves the drawdown or triggers a cap. Postmortems are not optional and not soft-pedaled — the 1,095-day commitment includes the commitment to surface losses with the same prominence as wins.
 

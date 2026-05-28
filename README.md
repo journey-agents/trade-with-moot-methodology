@@ -59,7 +59,7 @@ Full tables and caveats: [performance/README.md](performance/README.md).
 ## Cadence
 
 - **Daily close:** 4pm ET Mon–Fri (closing bell, not 5pm)
-- **Friday Rebalance Day:** biweekly Fridays at 5pm ET — public rebalance ritual
+- **Friday Rebalance Day:** biweekly Fridays at 10am ET — Moot's cron-fired V3 + AI sleeve rebalance, during market hours, autonomous; same-day steward writeup at daily close
 - **Sunday Journal:** weekly long-form retrospective
 - **Monthly P&L:** within the first 5 days of the following month
 - **Day 1,095** (~summer 2029): full retrospective — P&L, methodology evolution, architecture postmortem, whatever the outcome
